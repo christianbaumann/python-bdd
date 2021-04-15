@@ -1,2 +1,5 @@
 /python-bdd.iml
 /.idea/
+/Pipfile.lock
+/.pytest_cache
+/__pycache__/
