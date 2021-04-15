@@ -8,7 +8,13 @@ def test_add():
     pass
 
 
-@given(parsers.cfparse('the basket has "{initial:Number}" cucumbers', extra_types=dict(Number=int)), target_fixture='basket')
+@scenario('../features/cucumbers.feature', 'Remove cucumbers from a basket')
+def test_remove():
+    pass
+
+
+@given(parsers.cfparse('the basket has "{initial:Number}" cucumbers', extra_types=dict(Number=int)),
+       target_fixture='basket')
 def basket(initial):
     return CucumberBasket(initial_count=initial)
 
@@ -16,6 +22,11 @@ def basket(initial):
 @when(parsers.cfparse('"{some:Number}" cucumbers are added to the basket', extra_types=dict(Number=int)))
 def add_cucumbers(basket, some):
     basket.add(some)
+
+
+@when(parsers.cfparse('"{some:Number}" cucumbers are removed from the basket', extra_types=dict(Number=int)))
+def remove_cucumbers(basket, some):
+    basket.remove(some)
 
 
 @then(parsers.cfparse('the basket contains "{total:Number}" cucumbers', extra_types=dict(Number=int)))
